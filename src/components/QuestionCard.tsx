@@ -34,3 +34,4 @@ export const QuestionCard: React.FC<Props> = ({
     </div>
   )
 
+  export default QuestionCard

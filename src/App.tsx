@@ -1,21 +1,25 @@
 import React, { useState} from 'react';
+import { fetchQuestions } from './API';
 
 // Components
 import QuestionCard from './components/QuestionCard'
+
+// Types
+import { QuestionState, Difficulty } from './API';
+
 
 const TOTAL_QUESTIONS = 20;
 
 const App = () => {
   const [loading, setLoading] = useState(false)
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState<QuestionState[]>([])
   const [number, setNumber] = useState(0)
   const [userAnswers, setUserAnswers] = useState([])
   const [score, setScore] = useState(0)
   const [gameOver, setGameOver] = useState(true)
 
-
-  const APIUrl = 'https://opentdb.com/api.php?amount=19&category=9&difficulty=easy&type=multiple'
-
+  console.log(fetchQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
+  
 
   const startTrivia =  async () => {
      
@@ -36,14 +40,14 @@ const App = () => {
       </button>
       <p className="score">Score: </p>
       <p>Loading Questions...</p>
-    <QuestionCard
+    {/* <QuestionCard
       questionNumber={number + 1}
       totalQuestions={TOTAL_QUESTIONS}
       question={questions[number].question}
       answers={questions[number].answers}
       userAnswer={userAnswers ? userAnswers[number] : undefined} 
       callback={checkAnswer}
-    />
+    /> */}
     <button className="next" onClick={nextQuestion}>Next Question</button>
     </div>
   )
